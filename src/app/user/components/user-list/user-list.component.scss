@@ -1,0 +1,40 @@
+.user-card-container {
+    margin: 0% 10%;
+
+    .create-new-user{
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        margin: 10px;
+    }
+
+    .user-list-container{
+        display: grid;
+        grid-template-columns: auto auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    table {
+        width: 100%;
+
+        td, th {
+            width: 20%;
+        }
+    }
+
+    .mat-form-field {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    label{
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    .invalid-user{
+        margin-left: 5px;
+        color: red;
+    }
+}

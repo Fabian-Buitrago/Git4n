@@ -1,0 +1,53 @@
+<div class="user-container">
+  <form [formGroup]="userForm" novalidate (ngSubmit)="onSubmit()">
+      <h2>Create user</h2>
+
+      <div class="user-content-form">
+          <mat-form-field floatLabel="always">
+              <input autofocus type="text" matInput placeholder="Names" formControlName="names">
+              <mat-hint *ngIf="formUser.names.errors && !formUser.names.pristine">
+                <div [hidden]="!formUser.names.errors.required">Names is required.</div>
+              </mat-hint>
+          </mat-form-field>
+
+          <mat-form-field floatLabel="always">
+              <input autofocus type="text" matInput placeholder="Last Names" formControlName="lastNames">
+              <mat-hint *ngIf="formUser.lastNames.errors && !formUser.lastNames.pristine">
+                <div [hidden]="!formUser.lastNames.errors.required">Last Names is required.</div>
+              </mat-hint>
+            </mat-form-field>
+
+          <mat-form-field floatLabel="always">
+            <input autofocus type="number" matInput placeholder="Identification" formControlName="identificationNumber">
+            <mat-hint *ngIf="formUser.identificationNumber.errors && !formUser.identificationNumber.pristine">
+              <div [hidden]="!formUser.identificationNumber.errors.required">Identification Number is required.</div>
+            </mat-hint>
+          </mat-form-field>
+
+          <mat-form-field floatLabel="always">
+            <input autofocus type="date" matInput placeholder="Birthdate" formControlName="birthdate">
+            <mat-hint *ngIf="formUser.birthdate.errors && !formUser.birthdate.pristine">
+              <div [hidden]="!formUser.birthdate.errors.required">Birthdate is required.</div>
+              <div [hidden]="!formUser.birthdate.errors.years">{{formUser.birthdate.errors.years.message}}</div>
+            </mat-hint>
+          </mat-form-field>
+
+          <mat-form-field floatLabel="always">
+            <input autofocus type="email" matInput placeholder="Email" formControlName="email">
+            <mat-hint *ngIf="formUser.email.errors && !formUser.email.pristine">
+              <div *ngIf="formUser.email.errors.required">Email is required</div>
+              <div *ngIf="formUser.email.errors.email">Email must be a valid email address</div>
+            </mat-hint>
+          </mat-form-field>
+
+          <mat-form-field floatLabel="always">
+            <input autofocus type="text" matInput placeholder="Github User" formControlName="githubUser">
+            <mat-hint *ngIf="formUser.githubUser.errors && !formUser.githubUser.pristine">
+              <div [hidden]="!formUser.githubUser.errors.required">Github User is required.</div>
+            </mat-hint>
+          </mat-form-field>
+      </div>
+
+      <button type="submit" mat-raised-button color="primary" [disabled]="!userForm.valid">{{hasIdProperty ? 'Update' : 'Create'}}</button>
+  </form>
+</div>

@@ -1,0 +1,88 @@
+<mat-card class="user-card-container">
+
+  <button (click)="goToDashboard()" mat-stroked-button color="primary" class="create-new-user">
+    Create new user
+  </button>
+
+  <div class="user-list-container">
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <label>Names:</label>
+        <span>{{currentUser.names}}</span>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+          <label>Last Names:</label>
+          <span>{{currentUser.lastNames}}</span>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <label>Identification Number:</label>
+        <span>{{currentUser.identificationNumber}}</span>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-list role="list">
+        <mat-list-item role="listitem">
+          <label>Birthdate:</label>
+          <span>{{currentUser.birthdate}}</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <label>Email:</label>
+          <span>{{currentUser.email}}</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <label>Github User:</label>
+          <span>{{currentUser.githubUser}}</span>
+          <span class="invalid-user">{{!existGithubUser ? '(Does not exist)' : ''}}</span>
+        </mat-list-item>
+    </mat-list>
+  </div>
+
+  <div>
+      <mat-form-field appearance="outline">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" autofocus>
+          <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+          <!-- Language Column -->
+          <ng-container matColumnDef="language">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> LANGUAGE </th>
+            <td mat-cell *matCellDef="let element"> {{element.language}} </td>
+          </ng-container>
+      
+          <!-- Default Branch Size Column -->
+          <ng-container matColumnDef="default_branch">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> DEFAULT BRANCH </th>
+            <td mat-cell *matCellDef="let element"> {{element.default_branch}} </td>
+          </ng-container>
+      
+          <!-- Git Url Column -->
+          <ng-container matColumnDef="clone_url">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> GIT URL </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-button color="primary" (click)="copyMessage(element.clone_url)">Url</button>
+            </td>
+          </ng-container>
+          
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> NAME </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+    
+          <!-- Description Column -->
+          <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPTION </th>
+              <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+      <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+  </div>
+
+</mat-card>
+

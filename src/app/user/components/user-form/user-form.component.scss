@@ -1,0 +1,25 @@
+.user-container{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    form{
+        width: 50%;
+    }
+
+    button{
+        float: right;
+        margin: 10px 10px 0px;
+    }
+}
+
+.user-content-form{
+    padding: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+
+    mat-form-field{
+        margin: 10px 0px;
+    }
+}
