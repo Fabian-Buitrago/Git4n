@@ -35,16 +35,11 @@ export class UserFormComponent implements OnInit {
   onSubmit() {
     let user = this.userForm.value;
     let ramdonId = Date.now().toString();
-
-    this.cookieService.set(ramdonId, JSON.stringify(user));
-    this.snackBar.openFromComponent(UserFormComponent, {
-      duration: 500,
-    });
-    
     let config = new MatSnackBarConfig();
     config.duration = 5000;
-    this.snackBar.open('User created successfully', null, config);
 
+    this.cookieService.set(ramdonId, JSON.stringify(user));
+    this.snackBar.open('User created successfully', null, config);
     this.router.navigate(['dashboard/UserList', ramdonId])
   }
 
